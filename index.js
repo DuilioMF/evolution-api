@@ -9,11 +9,18 @@ app.get('/', (req, res) => {
 
 app.post('/send-message', (req, res) => {
   const { number, message } = req.body;
-  console.log(`Mensaje para ${number}: ${message}`);
-  res.json({ status: 'ok', detail: `Mensaje recibido para ${number}` });
+
+  if (!number || !message) {
+    return res.status(400).json({ error: 'Faltan parámetros: number o message' });
+  }
+
+  // Acá iría el envío real por WhatsApp
+  console.log(`Enviar mensaje a ${number}: ${message}`);
+
+  return res.json({ status: 'Mensaje simulado enviado correctamente' });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto ${PORT}`);
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

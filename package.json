@@ -1,6 +1,7 @@
 {
-  "name": "evolution-api",
+  "name": "evolution-api-render",
   "version": "1.0.0",
+  "description": "API de WhatsApp para usar en Render",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
