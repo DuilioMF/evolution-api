@@ -139,8 +139,9 @@ async function bootstrap() {
     // but before any and other error-handling middlewares are defined
     Sentry.setupExpressErrorHandler(app);
   }
+  const port = process.env.PORT || httpServer.PORT;
 
-  server.listen(httpServer.PORT, () => logger.log(httpServer.TYPE.toUpperCase() + ' - ON: ' + httpServer.PORT));
+  server.listen(port, () => logger.log(`${httpServer.TYPE.toUpperCase()} - ON: ${port}`));  
 
   initWA();
 
