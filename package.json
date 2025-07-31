@@ -5,8 +5,10 @@
   "main": "./dist/main.js",
   "type": "commonjs",
   "scripts": {
-    "build": "tsc --noEmit && tsup",
-    "start": "tsnd -r tsconfig-paths/register --files --transpile-only ./src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "postinstall": "prisma generate",
+    "migrate:deploy": "prisma migrate deploy --schema=prisma/schema.prisma",    
     "start:prod": "node dist/main",
     "dev:server": "tsnd -r tsconfig-paths/register --files --transpile-only --respawn --ignore-watch node_modules ./src/main.ts",
     "test": "tsnd -r tsconfig-paths/register --files --transpile-only --respawn --ignore-watch node_modules ./test/all.test.ts",
