@@ -5,49 +5,11 @@
   "main": "./dist/main.js",
   "type": "commonjs",
   "scripts": {
-    "build": "tsc --noEmit && tsup",
-    "start": "tsx ./src/main.ts",
-    "start:prod": "node dist/main",
-    "dev:server": "tsx watch ./src/main.ts",
-    "test": "tsx watch ./test/all.test.ts",
-    "lint": "eslint --fix --ext .ts src",
-    "lint:check": "eslint --ext .ts src",
-    "db:generate": "node runWithProvider.js \"npx prisma generate --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:deploy": "node runWithProvider.js \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate deploy --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:deploy:win": "node runWithProvider.js \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate deploy --schema prisma\\DATABASE_PROVIDER-schema.prisma\"",
-    "db:studio": "node runWithProvider.js \"npx prisma studio --schema ./prisma/DATABASE_PROVIDER-schema.prisma\"",
-    "db:migrate:dev": "node runWithProvider.js \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate dev --schema ./prisma/DATABASE_PROVIDER-schema.prisma && cp -r ./prisma/migrations/* ./prisma/DATABASE_PROVIDER-migrations\"",
-    "db:migrate:dev:win": "node runWithProvider.js \"xcopy /E /I prisma\\DATABASE_PROVIDER-migrations prisma\\migrations && npx prisma migrate dev --schema prisma\\DATABASE_PROVIDER-schema.prisma\""
+    "build": "tsc && tsup",
+    "start": "node dist/main.js",
+    "postinstall": "prisma generate",
+    "migrate:deploy": "node runWithProvider.js \"rm -rf ./prisma/migrations && cp -r ./prisma/DATABASE_PROVIDER-migrations ./prisma/migrations && npx prisma migrate deploy --schema ./prisma/DATABASE_PROVIDER-schema.prisma\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EvolutionAPI/evolution-api.git"
-  },
-  "keywords": [
-    "chat",
-    "communication",
-    "message",
-    "send message",
-    "whatsapp",
-    "js-whatsapp",
-    "whatsapp-api",
-    "whatsapp-web",
-    "whatsapp",
-    "whatsapp-chat",
-    "whatsapp-group",
-    "automation",
-    "multi-device",
-    "bot"
-  ],
-  "author": {
-    "name": "Davidson Gomes",
-    "email": "contato@evolution-api.com"
-  },
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/EvolutionAPI/evolution-api/issues"
-  },
-  "homepage": "https://github.com/EvolutionAPI/evolution-api#readme",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@aws-sdk/client-sqs": "^3.723.0",
@@ -104,27 +66,7 @@
     "tsup": "^8.3.5"
   },
   "devDependencies": {
-    "@types/compression": "^1.7.5",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.18",
-    "@types/json-schema": "^7.0.15",
-    "@types/mime": "^4.0.0",
-    "@types/mime-types": "^2.1.4",
     "@types/node": "^22.10.5",
-    "@types/node-cron": "^3.0.11",
-    "@types/qrcode": "^1.5.5",
-    "@types/qrcode-terminal": "^0.12.2",
-    "@types/uuid": "^10.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.45.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.4.2",
-    "tsconfig-paths": "^4.2.0",
-    "tsx": "^4.20.3",
     "typescript": "^5.7.2"
   }
 }
