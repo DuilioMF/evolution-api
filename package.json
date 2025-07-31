@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && tsup",
     "start": "tsx ./src/main.ts",
     "start:prod": "node dist/main",
+    "postinstall": "prisma generate --schema=prisma/postgresql-schema.prisma",
     "dev:server": "tsx watch ./src/main.ts",
     "test": "tsx watch ./test/all.test.ts",
     "lint": "eslint --fix --ext .ts src",
